@@ -3,6 +3,7 @@
 A full-stack vehicle inventory and dealership management system built with **React + TypeScript** on the frontend and **Node.js + Express + PostgreSQL (Prisma)** on the backend. Supports role-based access control, Google OAuth, and a full admin dashboard for inventory management.
 
 ---
+<img width="1917" height="971" alt="image" src="https://github.com/user-attachments/assets/322d1e3a-c801-40a8-8851-ccdc7752d264" />
 
 ## 🌐 Live Demo
 
@@ -29,6 +30,10 @@ A full-stack vehicle inventory and dealership management system built with **Rea
 - Purchase vehicles (authenticated users)
 - Register / Login with email & password
 - **Google OAuth** sign-in support
+
+<img width="auto" height="500" alt="image" src="https://github.com/user-attachments/assets/8d5c356f-a968-4ba8-8a2e-fee71d0aefde" />
+<img width="auto" height="500" alt="image" src="https://github.com/user-attachments/assets/cc8e27c9-4fe5-4c00-b0a5-8f4b9654eb65" />
+
 
 ### 🛠️ Admin Dashboard
 - Add new vehicles to inventory
@@ -114,6 +119,9 @@ model Vehicle {
   addedBy   User?
 }
 ```
+<img width="500" height="auto" alt="image" src="https://github.com/user-attachments/assets/6dcd03c0-f2e7-436f-add4-b67bc1ef5cbe" />
+<img width="500" height="auto" alt="image" src="https://github.com/user-attachments/assets/86b3d28b-5341-4103-b6f0-d866b425bea1" />
+
 
 ---
 
@@ -243,8 +251,7 @@ Neon → Railway (backend) → Netlify (frontend) → update CORS + OAuth origin
 **Dhruv Ozarkar**  
 Full Stack Engineer • MCA @ LDCE Ahmedabad
 
-[![Portfolio](https://webflix.in)
-[![LinkedIn](https://linkedin.com/in/dhruv-ozarker)
-[![GitHub](https://github.com/DhruvOz11)
+https://linkedin.com/in/dhruv-ozarker
+https://github.com/DhruvOz11
 
 ---
