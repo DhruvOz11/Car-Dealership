@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  vehicles Vehicle[]
+
+  @@index([email], name: "idx_users_email")
+  @@map("users")
+}
+
+model Vehicle {
+  id        String   @id @default(uuid()) @db.Uuid
+  make      String
+  model     String
+  category  String
+  price     Decimal  @db.Decimal(12, 2)
+  quantity  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  addedBy   User?   @relation(fields: [addedById], references: [id])
+  addedById String? @db.Uuid
+
+  @@index([make, model], name: "idx_vehicles_make_model")
+  @@index([category], name: "idx_vehicles_category")
+  @@index([price], name: "idx_vehicles_price")
+  @@index([addedById], name: "idx_vehicles_added_by")
+  @@map("vehicles")
+}
