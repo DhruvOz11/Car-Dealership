@@ -5,6 +5,11 @@ import type { LoginInput, RegisterInput } from "../validators/auth.validator.js"
 
 const SALT_ROUNDS = 10;
 
+import { env } from "../config/env.js";
+import { OAuth2Client } from "google-auth-library";
+
+const googleClient = new OAuth2Client(env.GOOGLE_CLIENT_ID);
+
 export const registerUser = async (input: RegisterInput) => {
     const existingUser = await prisma.user.findUnique({
         where: { email: input.email },
@@ -68,6 +73,40 @@ export const loginUser = async (input: LoginInput) => {
             email: user.email,
             role: user.role,
         },
+        token,
+    };
+};
+
+export const loginWithGoogle = async (credential: string) => {
+    const ticket = await googleClient.verifyIdToken({
+        idToken: credential,
+        audience: env.GOOGLE_CLIENT_ID,
+    });
+    const payload = ticket.getPayload();
+    
+    if (!payload || !payload.email) {
+        throw new Error("INVALID_CREDENTIALS");
+    }
+
+    let user = await prisma.user.findUnique({
+        where: { email: payload.email },
+    });
+
+    if (!user) {
+        user = await prisma.user.create({
+            data: {
+                name: payload.name || "Google User",
+                email: payload.email,
+                password: "", // OAuth users don't need a local password
+                role: "USER",
+            },
+        });
+    }
+
+    const token = signJwt({ userId: user.id, role: user.role });
+    
+    return {
+        user: { id: user.id, name: user.name, email: user.email, role: user.role },
         token,
     };
 };
