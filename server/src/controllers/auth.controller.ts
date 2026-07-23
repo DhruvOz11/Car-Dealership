@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { loginUser, registerUser } from "../services/auth.service.js";
+import { loginUser, registerUser, loginWithGoogle } from "../services/auth.service.js";
 import { loginSchema, registerSchema } from "../validators/auth.validator.js";
 
 export const register = async (req: Request, res: Response) => {
@@ -43,5 +43,20 @@ export const login = async (req: Request, res: Response) => {
         }
 
         return res.status(500).json({ error: "Internal server error" });
+    }
+};
+
+export const googleAuth = async (req: Request, res: Response) => {
+    const { credential } = req.body;
+    if (!credential) {
+        return res.status(400).json({ error: "No credential provided" });
+    }
+    
+    try {
+        const result = await loginWithGoogle(credential);
+        return res.status(200).json(result);
+    } catch (error) {
+        console.error("Google Auth Error:", error);
+        return res.status(401).json({ error: "Google authentication failed" });
     }
 };

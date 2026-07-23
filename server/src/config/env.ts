@@ -5,6 +5,7 @@ const envSchema = z.object({
     JWT_SECRET: z.string().min(16, "JWT_SECRET must be at least 16 characters"),
     NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
     PORT: z.string().optional(),
+    GOOGLE_CLIENT_ID: z.string().nonempty(),
 });
 
 const parsed = envSchema.safeParse(process.env);
