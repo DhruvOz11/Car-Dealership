@@ -3,7 +3,7 @@ node_modules
 .env
 
 /generated/prisma
-
+node_modules/
 # Dependency directories
 node_modules/
 jspm_packages/
