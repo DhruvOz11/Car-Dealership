@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  @apply bg-asphalt-900 text-chrome-100 font-body;
+}
+
+::selection {
+  @apply bg-ignition/30;
+}
+
+/* Plate: the signature element — a license-plate style badge used for
+   category tags and status chips throughout the app. */
+.plate {
+  @apply inline-flex items-center gap-1 rounded-[4px] border-2 border-chrome-300/70 bg-chrome-100 px-2 py-0.5
+    font-mono text-[11px] font-bold uppercase tracking-widest text-asphalt-900;
+}
+
+.plate-dark {
+  @apply inline-flex items-center gap-1 rounded-[4px] border-2 border-asphalt-600 bg-asphalt-800 px-2 py-0.5
+    font-mono text-[11px] font-bold uppercase tracking-widest text-chrome-300;
+}
+
+.focus-ring {
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-ignition focus-visible:ring-offset-2 focus-visible:ring-offset-asphalt-900;
+}
