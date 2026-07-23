@@ -7,7 +7,8 @@ import { env } from "./config/env.js";
 
 const app: express.Application = express();
 
-app.use(cors({ origin: ["http://localhost:5173", "https://dhruvcardealership.netlify.app"] }))app.use(express.json());
+app.use(cors({ origin: ["http://localhost:5173", "https://dhruvcardealership.netlify.app"] }));
+app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/vehicles", vehicleRoutes);
 
